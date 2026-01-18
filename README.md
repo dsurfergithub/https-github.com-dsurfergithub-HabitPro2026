@@ -1,33 +1,58 @@
+# HabitOrbit 365 🚀 | Ultra Edition
 
-# HabitOrbit 365 🚀
+**HabitOrbit 365** es una herramienta de ingeniería personal diseñada para el alto rendimiento. No es solo un rastreador de hábitos; es un centro de comando para tu disciplina diaria, con una estética **Premium Dark/Neon** y una arquitectura **Zero-Build** ultrarrápida.
 
-**HabitOrbit 365** es un rastreador de hábitos de alto rendimiento diseñado con una estética cyberpunk/neon. Enfocado en la visualización de datos anual y la disciplina diaria mediante el sistema de "7 Maestros".
+## 🌟 Características Élite
 
-## ✨ Características Principales
+### 1. Sistema "7 Maestros" (Daily Objectives)
+Enfócate en lo que importa. Un espacio sagrado para tus 7 metas críticas del día. 
+- **Inercia Visual:** La barra de progreso y el aura de la interfaz reaccionan a tu cumplimiento.
+- **Historial de Conquistas:** Revisa tus rachas pasadas con un solo toque.
 
-- **Vista de Órbita (Anual)**: Visualiza tu progreso de los 365 días en una sola rejilla interactiva.
-- **7 Maestros Diarios**: Gestión de objetivos críticos diarios con persistencia garantizada.
-- **Inercia Zen**: Indicador dinámico que mide tu consistencia global y ajusta su pulsación visual.
-- **Vitrina de Trofeos**: Sistema de hitos automáticos con recompensas personalizables.
-- **Modo Offline-First**: Todos los datos se gestionan localmente mediante `localStorage`.
-- **Exportación/Importación**: Backup completo de tus datos en formato JSON.
+### 2. Órbita Anual (Pixel-Perfect Tracking)
+Visualiza tu año completo (365 días) en una rejilla interactiva estilo GitHub.
+- **Fallo Inteligente:** Detección automática de inactividad (rojo sutil tras 5 días sin marcar).
+- **Exportación de Arte:** Descarga tu rejilla anual como imagen para compartir tu progreso.
 
-## 🛠️ Tech Stack
+### 3. Vitrina de Trofeos & Hitos Automáticos
+El sistema detecta tu consistencia y genera hitos (Milestones) cada X días cumplidos.
+- **Recompensas Dinámicas:** Tú defines qué premio recibes al alcanzar la meta.
+- **Iconografía Personalizada:** Elige el emoji que representa tu victoria.
 
-- **React 19**
-- **Tailwind CSS** (Estética Dark/Neon)
-- **Lucide React** (Iconografía)
-- **Date-fns** (Manipulación precisa de fechas)
-- **HTML2Canvas** (Exportación de rejillas a imagen)
+### 4. Inteligencia de Estado (Orbit Status)
+Un indicador dinámico en la cabecera que mide la salud de tu disciplina:
+- **Órbita Estable:** +80% de cumplimiento.
+- **En Trayectoria:** 40% - 80% de cumplimiento.
+- **Retomar Impulso:** <40% (Alerta visual).
 
-## 🚀 Instalación y Uso
+## 🛠️ Stack Tecnológico (Vanguardia)
 
-1. Sube estos archivos a tu repositorio de GitHub.
-2. Conecta tu repositorio a **Vercel** o **Netlify**.
-3. ¡Listo! La app es una PWA (Progressive Web App) lista para usar en dispositivos móviles.
+- **React 19 (Zero Build):** Cargado directamente vía ESM, sin procesos de compilación pesados.
+- **Tailwind CSS:** Diseño atómico con sombras neón y desenfoques gaussianos.
+- **Lucide React:** Set de iconos minimalistas.
+- **HTML2Canvas:** Motor de renderizado para exportación de imágenes.
+- **LocalStorage Engine:** Persistencia total offline.
 
-## 🛡️ Privacidad
-Tus datos nunca salen de tu dispositivo. Todo el procesamiento y almacenamiento es local.
+## 🚀 Despliegue Instantáneo (Vercel/GitHub Pages)
+
+Esta aplicación utiliza una arquitectura moderna de **módulos ES6**. No necesita `npm install` ni `npm build`.
+
+1. **GitHub:** Sube todos los archivos a un repositorio.
+2. **Vercel:** 
+   - Conecta el repo.
+   - El archivo `vercel.json` incluido configurará automáticamente las rutas y los tipos MIME.
+   - ¡Listo en 10 segundos!
+
+## 💾 Backups y Privacidad
+
+- **Privacidad Total:** Tus datos nunca viajan a un servidor externo. Todo vive en tu navegador.
+- **Backup JSON:** Usa el botón de **Exportar** en la vista de Órbita para descargar un archivo `.json` con toda tu historia. Puedes restaurarlo en cualquier momento o dispositivo.
+
+## ⌨️ Guía de Uso Rápido
+
+- **Click Simple:** Marca como "Logrado" (Verde).
+- **Click Doble/Ciclo:** Alterna entre Logrado -> Fallido -> Descanso -> Pendiente.
+- **Archivar:** Si un hábito ya no te sirve pero quieres conservar sus datos, usa la función "Archivar" en la vista de Detalle.
 
 ---
-*Desarrollado con enfoque en la Disciplina y el Alto Rendimiento.*
+*Desarrollado para quienes ven la disciplina como una forma de arte.* 🌌
