@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es" class="dark">
 <head>
@@ -19,7 +20,6 @@
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
-            /* Soporte para áreas seguras de iPhone (Notch y barra inferior) */
             padding-top: env(safe-area-inset-top);
         }
         
@@ -30,30 +30,38 @@
         .neon-glow {
             filter: drop-shadow(0 0 8px currentColor);
         }
-        /* Ajuste para evitar zoom en inputs de iOS */
         input, button, select, textarea {
             font-size: 16px !important;
         }
-        /* Tap highlight removal for a more native feel */
         * {
             -webkit-tap-highlight-color: transparent;
+        }
+        /* Garantizar que el root ocupe toda la pantalla para evitar flash negro */
+        #root {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
     </style>
 <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.460.0",
+    "html2canvas": "https://esm.sh/html2canvas@1.4.1",
+    "date-fns": "https://esm.sh/date-fns@4.1.0",
+    "date-fns/": "https://esm.sh/date-fns@4.1.0/",
     "react/": "https://esm.sh/react@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "html2canvas": "https://esm.sh/html2canvas@^1.4.1",
-    "date-fns": "https://esm.sh/date-fns@^4.1.0",
-    "date-fns/": "https://esm.sh/date-fns@^4.1.0/"
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
   }
 }
 </script>
 </head>
 <body>
     <div id="root"></div>
+    <!-- Script de entrada vital para que React se monte -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>

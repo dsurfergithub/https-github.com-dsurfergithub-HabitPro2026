@@ -1,15 +1,16 @@
+
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Layout } from './components/Layout';
-import { HabitGrid } from './components/HabitGrid';
-import { HabitTimeline } from './components/HabitTimeline';
-import { TrophyCabinet } from './components/TrophyCabinet';
-import { HabitModal } from './components/HabitModal';
-import { DailyObjectives } from './components/DailyObjectives';
-import { UnifiedHeatmap } from './components/UnifiedHeatmap';
-import { MilestoneCelebration } from './components/MilestoneCelebration';
-import { ConfirmationModal } from './components/ConfirmationModal';
-import { Habit, ViewMode, DayStatus, DailyObjectiveRecord, Milestone } from './types';
-import { getDayKey } from './utils';
+import { Layout } from './components/Layout.tsx';
+import { HabitGrid } from './components/HabitGrid.tsx';
+import { HabitTimeline } from './components/HabitTimeline.tsx';
+import { TrophyCabinet } from './components/TrophyCabinet.tsx';
+import { HabitModal } from './components/HabitModal.tsx';
+import { DailyObjectives } from './components/DailyObjectives.tsx';
+import { UnifiedHeatmap } from './components/UnifiedHeatmap.tsx';
+import { MilestoneCelebration } from './components/MilestoneCelebration.tsx';
+import { ConfirmationModal } from './components/ConfirmationModal.tsx';
+import { Habit, ViewMode, DayStatus, DailyObjectiveRecord, Milestone } from './types.ts';
+import { getDayKey } from './utils.ts';
 import { Download, Upload, Trash2, PlusCircle, Archive, RotateCcw, ChevronDown, ChevronUp, ChevronLeft, ArrowUpRight } from 'lucide-react';
 
 const INITIAL_HABITS: Habit[] = [];
@@ -38,7 +39,6 @@ export default function App() {
     const savedHistory = localStorage.getItem('habit-orbit-daily-history');
     let history: DailyObjectiveRecord[] = savedHistory ? JSON.parse(savedHistory) : [];
     
-    // Recuperación de día anterior en carga inicial
     const lastDailyStr = localStorage.getItem('habit-orbit-current-daily');
     if (lastDailyStr) {
       const lastDaily: DailyObjectiveRecord = JSON.parse(lastDailyStr);
@@ -166,12 +166,12 @@ export default function App() {
     setConfirmConfig({
       isOpen: true, 
       title: 'REESTABLECER APP', 
-      message: 'Esta acción borrará todos tus datos locales de forma definitiva. La aplicación se reiniciará por completo.',
+      message: 'Esta acción borrará todos tus datos locales de forma definitiva.',
       confirmLabel: 'CONFIRMAR REINICIO', 
       variant: 'danger',
       onConfirm: () => {
         localStorage.clear();
-        window.location.href = window.location.origin;
+        window.location.reload();
       }
     });
   };
@@ -183,7 +183,7 @@ export default function App() {
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = `HabitOrbit_FullBackup_${new Date().getTime()}.json`;
+      link.download = `HabitOrbit_FullBackup.json`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -201,7 +201,7 @@ export default function App() {
           setHabits(data.habits);
           if (data.dailyHistory) setDailyHistory(data.dailyHistory);
           if (data.currentDaily) setCurrentDaily(data.currentDaily);
-          alert('Copia de seguridad restaurada.');
+          alert('Datos restaurados.');
         }
       } catch (err) { alert('Archivo no válido.'); }
     };
@@ -303,7 +303,7 @@ export default function App() {
           {activeHabits.length > 0 && (
             <>
               <div className="flex overflow-x-auto gap-4 pb-4 no-scrollbar -mx-4 px-4">{activeHabits.map(h => (<button key={h.id} onClick={() => setSelectedHabitId(h.id)} className={`px-8 py-5 rounded-[1.8rem] text-xs font-black uppercase tracking-widest border transition-all shrink-0 ${ (selectedHabitId || activeHabits[0].id) === h.id ? 'bg-white/10 border-white/20 shadow-2xl scale-105' : 'bg-transparent border-transparent text-gray-600' }`} style={{ color: (selectedHabitId || activeHabits[0].id) === h.id ? h.color : undefined }}>{h.name}</button>))}</div>
-              {selectedHabit && (<div className="space-y-6"><div className="flex justify-end gap-3 px-2"><button onClick={() => handleArchive(selectedHabit.id)} className="px-5 py-3 bg-white/5 text-gray-400 rounded-2xl text-[10px] font-black uppercase border border-white/5 active:scale-95 flex items-center gap-2 hover:bg-white/10 transition-colors"><Archive size={14} /> Archivar</button><button onClick={() => setConfirmConfig({ isOpen: true, title: 'ELIMINAR', message: '¿Seguro que quieres borrar este hábito? Se perderán todos sus hitos.', confirmLabel: 'Borrar', variant: 'danger', onConfirm: () => { setHabits(p => p.filter(it => it.id !== selectedHabit.id)); setConfirmConfig(c => ({...c, isOpen: false})); }})} className="px-5 py-3 bg-red-500/10 text-red-500 rounded-2xl text-[10px] font-black uppercase border border-red-500/20 active:scale-95 flex items-center gap-2 hover:bg-red-500/20 transition-colors"><Trash2 size={14} /> Eliminar</button></div><HabitGrid habit={selectedHabit} onUpdateDay={(date, status) => updateDayStatus(selectedHabit.id, date, status)} /></div>)}
+              {selectedHabit && (<div className="space-y-6"><div className="flex justify-end gap-3 px-2"><button onClick={() => handleArchive(selectedHabit.id)} className="px-5 py-3 bg-white/5 text-gray-400 rounded-2xl text-[10px] font-black uppercase border border-white/5 active:scale-95 flex items-center gap-2 hover:bg-white/10 transition-colors"><Archive size={14} /> Archivar</button><button onClick={() => setConfirmConfig({ isOpen: true, title: 'ELIMINAR', message: '¿Borrar hábito?', confirmLabel: 'Borrar', variant: 'danger', onConfirm: () => { setHabits(p => p.filter(it => it.id !== selectedHabit.id)); setConfirmConfig(c => ({...c, isOpen: false})); }})} className="px-5 py-3 bg-red-500/10 text-red-500 rounded-2xl text-[10px] font-black uppercase border border-red-500/20 active:scale-95 flex items-center gap-2 hover:bg-red-500/20 transition-colors"><Trash2 size={14} /> Eliminar</button></div><HabitGrid habit={selectedHabit} onUpdateDay={(date, status) => updateDayStatus(selectedHabit.id, date, status)} /></div>)}
             </>
           )}
         </div>
